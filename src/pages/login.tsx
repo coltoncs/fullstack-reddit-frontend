@@ -1,4 +1,4 @@
-import { Text, Input, Flex, Button } from "@chakra-ui/react";
+import { Text, Flex, Button } from "@chakra-ui/react";
 import { Hero } from "../components/Hero";
 import { Container } from "../components/Container";
 import { Main } from "../components/Main";
@@ -6,7 +6,7 @@ import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Footer } from "../components/Footer";
 import { useLoginMutation } from "../generated/graphql";
 import Wrapper from "../components/Wrapper";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikProps } from "formik";
 import { toErrorMap } from "../utils/toErrorMap";
 import router from "next/router";
 import InputField from "../components/InputField";
@@ -31,7 +31,7 @@ const Login: React.FC<{}> = ({}) => {
               }
             }}
           >
-            {({ isSubmitting }) => (
+            {(props: FormikProps<any>) => (
               <Form>
                 <Flex
                   justifyContent={`center`}
@@ -39,26 +39,9 @@ const Login: React.FC<{}> = ({}) => {
                   flexDirection={`column`}
                   gap={`2rem`}
                 >
-                  <Field name="usernameOrEmail">
-                    {() => (
-                      <InputField
-                        name="usernameOrEmail"
-                        placeholder="username or email"
-                        label="Username or Email"
-                      />
-                    )}
-                  </Field>
-                  <Field name="password">
-                    {() => (
-                      <InputField
-                        name="password"
-                        placeholder="password"
-                        label="Password"
-                        type="password"
-                      />
-                    )}
-                  </Field>
-                  <Button mt={4} isLoading={isSubmitting} type="submit">
+                  <Field name="usernameOrEmail" as={InputField} placeholder="username or email" label="Username or Email" />
+                  <Field name="password" as={InputField} placeholder="password" label="Password" type="password" />
+                  <Button mt={4} isLoading={props.isSubmitting} type="submit">
                     Log In
                   </Button>
                 </Flex>

@@ -8,6 +8,7 @@ import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Footer } from '../components/Footer'
 import { createUrqlClient } from '../utils/createUrqlClient'
 import { usePostsQuery } from '../generated/graphql'
+import React from 'react'
 
 const Index = () => {
   const [{data}] = usePostsQuery();

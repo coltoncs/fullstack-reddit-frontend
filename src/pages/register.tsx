@@ -6,7 +6,7 @@ import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Footer } from "../components/Footer";
 import { useRegisterMutation } from "../generated/graphql";
 import Wrapper from "../components/Wrapper";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikProps } from "formik";
 import { toErrorMap } from "../utils/toErrorMap";
 import router from "next/router";
 import InputField from "../components/InputField";
@@ -34,7 +34,7 @@ const register: React.FC<registerProps> = ({}) => {
               }
             }}
           >
-            {({ isSubmitting }) => (
+            {(props: FormikProps<any>) => (
               <Form>
                 <Flex
                   justifyContent={`center`}
@@ -42,35 +42,10 @@ const register: React.FC<registerProps> = ({}) => {
                   flexDirection={`column`}
                   gap={`2rem`}
                 >
-                  <Field name="username">
-                    {() => (
-                      <InputField
-                        name="username"
-                        placeholder="username"
-                        label="Username"
-                      />
-                    )}
-                  </Field>
-                  <Field name="email">
-                    {() => (
-                      <InputField
-                        name="email"
-                        placeholder="email"
-                        label="Email"
-                      />
-                    )}
-                  </Field>
-                  <Field name="password">
-                    {() => (
-                      <InputField
-                        name="password"
-                        placeholder="password"
-                        label="Password"
-                        type="password"
-                      />
-                    )}
-                  </Field>
-                  <Button mt={4} isLoading={isSubmitting} type="submit">
+                  <Field name="username" as={InputField} placeholder="username" label="Username" />
+                  <Field name="email" as={InputField} placeholder="email" label="Email" />
+                  <Field name="password" as={InputField} placeholder="password" label="Password" />
+                  <Button mt={4} isLoading={props.isSubmitting} type="submit">
                     Register
                   </Button>
                 </Flex>
