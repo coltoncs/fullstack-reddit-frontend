@@ -17,6 +17,14 @@ const theme = extendTheme({
         default: '#16161D',
         _dark: '#ade3b8',
       },
+      navText: {
+        default: '#fff',
+        _dark: '#ade3b8',
+      },
+      navBtn: {
+        default: '#000',
+        _dark: '#ade3b8',
+      },
       heroGradientStart: {
         default: '#7928CA',
         _dark: '#e3a7f9',
